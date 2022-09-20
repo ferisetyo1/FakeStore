@@ -8,10 +8,22 @@
 import SwiftUI
 
 struct CartView: View {
+    @ObservedObject var viewModel = CartViewModel()
     var body: some View {
         VStack{
-            VStack{
-                
+            VStack(alignment:.leading){
+                if(viewModel.carts.count>0){
+                    HStack(alignment: .top){
+                        VStack{
+                            ForEach(viewModel.carts[0].products,id:\.productID){data in
+                                CartItemView(item: data)
+                                Color.gray.frame(height:1)
+                            }
+                        }
+                    }
+                }else{
+                    Text("empty")
+                }
             }.frame(maxHeight:.infinity)
             HStack{
                 VStack(alignment:.leading){
@@ -29,11 +41,11 @@ struct CartView: View {
                             .fill(/*@START_MENU_TOKEN@*/Color.blue/*@END_MENU_TOKEN@*/))
                 }
                 .symbolVariant(/*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
-
+                
             }.padding()
                 .compositingGroup().background(Color.white)
                 .shadow(radius: 1)
-        }.navigationTitle("Cart")
+        }
     }
 }
 

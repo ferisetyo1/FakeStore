@@ -16,7 +16,7 @@ struct ContentView: View {
                         Image(systemName: "bag.fill")
                     }
                 
-                Text("Nearby Screen")
+                ProfileView()
                     .tabItem {
                         Image(systemName: "person.circle")
                     }
